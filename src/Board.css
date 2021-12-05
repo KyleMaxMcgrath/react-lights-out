@@ -1,0 +1,9 @@
+.Board {
+  margin: 50px auto;
+  background-color: darkblue;
+  border: thin solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px lavender, -5px 5px lavender, 5px -5px lavender, -5px -5px lavender;
+  width: 500px;
+  height: 500px;
+}
