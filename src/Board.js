@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cell from "./Cell";
+import {v4 as uuid} from "uuid";
 import "./Board.css";
 
 /** Game board of Lights out.
@@ -34,9 +35,11 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   function createBoard() {
     let initialBoard = [];
     for(let i = 0; i < nrows; i++) {
-      let row = Array.from({length: 3});
+      let row = Array.from({length: ncols});
       if(chanceLightStartsOn)
         row = row.map((c) => (Math.random()>0.5 ? true : false));
+      else
+        row = row.map((c) => false)
       initialBoard.push(row);
     }
     // TODO: create array-of-arrays of true/false values
@@ -93,18 +96,20 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
     alert("You Won!");
   return (
     <table className="Board">
+      <tbody>
       {board.map( (row, i) => {
         return (
-        <tr>
+        <tr key={uuid()}>
           {row.map(
             (cell, j) => {
               return (
-                <Cell data-testid={`${i}-${j}`} flipCellsAroundMe={() => {flipCellsAround(i+"-"+j)}} isLit={cell}/>
+                <Cell  key={uuid()} k={uuid()} data_testid={`${i}-${j}`} flipCellsAroundMe={() => {flipCellsAround(`${i}-${j}`)}} isLit={cell}/>
               );
             }
           )}
         </tr>)
       })}
+      </tbody>
     </table>
   )
 

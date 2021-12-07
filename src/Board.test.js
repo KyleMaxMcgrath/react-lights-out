@@ -26,12 +26,15 @@ afterEach(function() {
 it("should handle clicks correctly", () => {
     let {getByTestId} = render(<Board nrows={3} ncols={3} chanceLightStartsOn={false} />)
     let cell00 = getByTestId("0-0");
+    fireEvent.click(cell00);
     let cell10 = getByTestId("1-0");
     let cell01 = getByTestId("0-1");
-    fireEvent.click(cell00);
     expect(cell10).toHaveClass("Cell-lit");
     expect(cell01).toHaveClass("Cell-lit");
+    cell00 = getByTestId("0-0");
     fireEvent.click(cell00);
+    cell10 = getByTestId("1-0");
+    cell01 = getByTestId("0-1");
     expect(cell10).not.toHaveClass("Cell-lit");
     expect(cell01).not.toHaveClass("Cell-lit");
 });
