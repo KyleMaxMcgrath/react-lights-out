@@ -5,24 +5,6 @@ it("should render", () => {
     render(<Board />)
 });
 
-beforeEach(function() {
-    jest
-      .spyOn(Math, "random")
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0)
-      .mockReturnValueOnce(0);
-});
-
-afterEach(function() {
-    Math.random.mockRestore();
-});
-
 it("should handle clicks correctly", () => {
     let {getByTestId} = render(<Board nrows={3} ncols={3} chanceLightStartsOn={false} />)
     let cell00 = getByTestId("0-0");
